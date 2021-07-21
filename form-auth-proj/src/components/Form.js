@@ -2,7 +2,7 @@ import React from "react";
 import "./Form.css";
 
 export default function Form(props) {
-  const { onChange, onSubmit, formData } = props;
+  const { onChange, onSubmit, formData, disabled } = props;
   return (
     <form onSubmit={onSubmit}>
       <label>
@@ -41,7 +41,7 @@ export default function Form(props) {
           checked={formData.agree}
         />
       </label>
-      <button>Submit</button>
+      <button disabled={disabled}>Submit</button>
     </form>
   );
 }

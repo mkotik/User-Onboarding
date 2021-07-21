@@ -3,11 +3,10 @@ import "./Users.css";
 
 export default function Users(props) {
   const { users } = props;
-  console.log(users);
   return (
     <div className="users">
-      {users.map((user) => (
-        <div className="user">
+      {users.map((user, i) => (
+        <div key={i} className="user">
           <h3 className="name">Name: {user.name}</h3>
           <h3 className="email">Email: {user.email}</h3>
           <h3 className="password">Password: {user.password}</h3>

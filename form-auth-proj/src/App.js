@@ -2,8 +2,10 @@ import logo from "./logo.svg";
 import "./App.css";
 import Form from "./components/Form";
 import Users from "./components/Users";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
+import formSchema from "./validations/formValidation.js";
+import * as yup from "yup";
 
 const initialFormData = {
   name: "",
@@ -12,13 +14,17 @@ const initialFormData = {
   agree: false,
 };
 
+const initialErrors = { ...initialFormData };
 function App() {
   const [users, setUsers] = useState([]);
   const [formData, setFormData] = useState(initialFormData);
+  const [errors, setErrors] = useState(initialErrors);
+  const [disabled, setDisabled] = useState(true);
 
   const onChange = function (e) {
     const { name, value, checked, type } = e.target;
     const valueToUse = type === "checkbox" ? checked : value;
+    setFormErrors(name, valueToUse);
     setFormData({ ...formData, [name]: valueToUse });
   };
 
@@ -38,9 +44,32 @@ function App() {
       });
   };
 
+  const setFormErrors = (name, value) => {
+    yup
+      .reach(formSchema, name)
+      .validate(value)
+      .then((res) => {
+        setErrors({ ...errors, [name]: "" });
+        console.log(errors);
+      })
+      .catch((err) => {
+        setErrors({ ...errors, [name]: err.errors[0] });
+        console.log(errors);
+      });
+  };
+
+  useEffect(() => {
+    formSchema.isValid(formData).then((valid) => setDisabled(!valid));
+  }, [formData]);
+
   return (
     <div className="App">
-      <Form onChange={onChange} onSubmit={onSubmit} formData={formData} />
+      <Form
+        onChange={onChange}
+        onSubmit={onSubmit}
+        formData={formData}
+        disabled={disabled}
+      />
       <Users users={users} />
     </div>
   );
