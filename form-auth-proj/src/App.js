@@ -50,11 +50,9 @@ function App() {
       .validate(value)
       .then((res) => {
         setErrors({ ...errors, [name]: "" });
-        console.log(errors);
       })
       .catch((err) => {
         setErrors({ ...errors, [name]: err.errors[0] });
-        console.log(errors);
       });
   };
 
@@ -69,6 +67,7 @@ function App() {
         onSubmit={onSubmit}
         formData={formData}
         disabled={disabled}
+        errors={errors}
       />
       <Users users={users} />
     </div>
