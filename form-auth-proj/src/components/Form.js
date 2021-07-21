@@ -3,17 +3,9 @@ import "./Form.css";
 
 export default function Form(props) {
   const { onChange, onSubmit, formData, disabled, errors } = props;
-  console.log(errors);
-  console.log(errors.name);
   return (
-    <form onSubmit={onSubmit}>
-      <div className="right">
-        <h4>{errors.name}</h4>
-        <h4>{errors.email}</h4>
-        <h4>{errors.password}</h4>
-        <h4>{errors.agree}</h4>
-      </div>
-      <div className="left">
+    <div className="wrap">
+      <form onSubmit={onSubmit}>
         <label>
           name:{" "}
           <input
@@ -51,7 +43,13 @@ export default function Form(props) {
           />
         </label>
         <button disabled={disabled}>Submit</button>
+      </form>
+      <div className="errorWrap">
+        <h4 className="nameErr">{errors.name}</h4>
+        <h4 className="emailErr">{errors.email}</h4>
+        <h4 className="passwordErr">{errors.password}</h4>
+        <h4 className="agreeErr">{errors.agree}</h4>
       </div>
-    </form>
+    </div>
   );
 }
