@@ -42,7 +42,9 @@ export default function Form(props) {
             checked={formData.agree}
           />
         </label>
-        <button disabled={disabled}>Submit</button>
+        <button id="submitBtn" disabled={disabled}>
+          Submit
+        </button>
       </form>
       <div className="errorWrap">
         <h4 className="nameErr">{errors.name}</h4>
