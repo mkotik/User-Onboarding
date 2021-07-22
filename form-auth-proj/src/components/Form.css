@@ -19,7 +19,7 @@ button {
   height: 200px;
 }
 
-.wrap {
+#wrap {
   display: flex;
 }
 

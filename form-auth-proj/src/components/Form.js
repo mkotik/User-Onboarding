@@ -4,7 +4,7 @@ import "./Form.css";
 export default function Form(props) {
   const { onChange, onSubmit, formData, disabled, errors } = props;
   return (
-    <div className="wrap">
+    <div id="#wrap">
       <form onSubmit={onSubmit}>
         <label>
           name:{" "}
