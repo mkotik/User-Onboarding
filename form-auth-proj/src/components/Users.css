@@ -1,0 +1,7 @@
+.user {
+  background-color: rgb(219, 212, 212);
+  width: 70%;
+  margin: auto;
+  border-radius: 10px;
+  box-shadow: 2px 5px 5px grey;
+}
